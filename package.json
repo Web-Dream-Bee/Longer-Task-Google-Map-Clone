@@ -7,8 +7,7 @@
     "react",
     "redux",
     "typescript",
-    "boilerplate",
-    "todomvc"
+    "restaurantGoogleMap"
   ],
   "main": "index.js",
   "scripts": {

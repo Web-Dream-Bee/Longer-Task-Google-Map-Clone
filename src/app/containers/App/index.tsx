@@ -2,10 +2,16 @@ import * as React from 'react';
 import * as style from './style.css';
 import { RouteComponentProps } from 'react-router';
 import { GoogleMapWrapper } from '../GoogleMapContainer';
+import { RestaurantList } from '../RestaurantList';
 import { getRestaurant } from '../../utils/API';
+import { omit } from '../../utils';
+import { connect } from 'react-redux';
+import { RestaurantActions } from 'app/actions/restaurants';
+import { bindActionCreators, Dispatch } from 'redux';
 
-export namespace App {
+export namespace AppContainer {
   export interface Props extends RouteComponentProps<void> {
+    actions: RestaurantActions
   }
   export interface State {
     center: {
@@ -16,19 +22,22 @@ export namespace App {
   }
 }
 
-class AppContainer extends React.Component<App.Props, App.State> {
-  static defaultProps: Partial<App.Props> = {
+class AppContainer extends React.Component<AppContainer.Props, AppContainer.State> {
+  static defaultProps: Partial<AppContainer.Props> = {
   };
 
   componentDidMount() {
-    getRestaurant(43,43);
+    const { center } = this.state;
+    getRestaurant(center.lat,center.lng).then(restaurants => {
+      this.props.actions.addRestaurant({...restaurants});
+    });
   }
-  constructor(props: App.Props, context?: any) {
+  constructor(props: AppContainer.Props, context?: any) {
     super(props, context);
     this.state = {
       center: {
-        lat: 59.95,
-        lng: 30.33
+        lat: 27.664827,
+        lng: -81.515755
       },
       zoom: 11
     }
@@ -37,13 +46,21 @@ class AppContainer extends React.Component<App.Props, App.State> {
   render() {
     return (
       <div className={style.normal}>
-        <div className={style.listItem} />
-        <div className={style.googleMap} >
-          <GoogleMapWrapper/>
+        <div className={style.listItem}>
+          <RestaurantList />
+        </div>
+        <div className={style.googleMap}>
+          <GoogleMapWrapper />
         </div>
       </div>
     );
   }
 }
 
-export const App = AppContainer
+const mapStateToProps = () => ({})
+
+const mapDispatchToProps = (dispatch: Dispatch) : Pick<AppContainer.Props, 'actions'> => ({
+    actions : bindActionCreators(omit(RestaurantActions, 'Type'), dispatch)
+  }
+)
+export const App = connect(mapStateToProps, mapDispatchToProps)(AppContainer);

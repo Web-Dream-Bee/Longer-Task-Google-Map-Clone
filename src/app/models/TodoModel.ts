@@ -1,15 +1,22 @@
+
 /** TodoMVC model definitions **/
 
-export interface TodoModel {
+export interface RestaurantsModel {
   id: number;
-  text: string;
-  completed: boolean;
-}
-
-export namespace TodoModel {
-  export enum Filter {
-    SHOW_ALL = 'all',
-    SHOW_ACTIVE = 'active',
-    SHOW_COMPLETED = 'completed'
-  }
+  alias: string;
+  categories: [];
+  display_phone: string;
+  distance: number;
+  image_url: string;
+  is_closed: boolean;
+  location: {
+    display_address: any;
+  };
+  name: string;
+  phone: string;
+  price: string;
+  rating: number;
+  review_count: number;
+  transactions: [];
+  url: string;
 }

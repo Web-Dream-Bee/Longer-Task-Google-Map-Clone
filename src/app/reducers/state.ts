@@ -1,10 +1,10 @@
-import { TodoModel } from 'app/models';
+import { RestaurantsModel } from 'app/models';
 
 export interface RootState {
-  todos: RootState.TodoState;
+  restaurants: RootState.RestaurantsState;
   router?: any;
 }
 
 export namespace RootState {
-  export type TodoState = TodoModel[];
+  export type RestaurantsState = RestaurantsModel[];
 }

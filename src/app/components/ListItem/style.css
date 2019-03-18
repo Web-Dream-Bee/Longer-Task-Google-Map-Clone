@@ -1,0 +1,47 @@
+@import url("https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
+
+.listViewContainer {
+  display: flex;
+  height: 80px;
+}
+
+.listViewContent {
+  flex: 3;
+}
+
+.listViewContent h1 {
+  font-size: 18px;
+}
+
+.listViewImage {
+  flex: 1;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.listViewImage img {
+  height: 80%;
+  width: 100%;
+}
+
+
+.starRating {
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
+}
+.backStars {
+  display: inline-block;
+  color: #393a3a19;
+  position: relative;
+}
+.frontStars {
+  display: flex;
+  color: #FFBC0B;
+  overflow: hidden;
+  position: absolute;
+  text-shadow: 1px 1px 3px #d29b09;
+  top: 2px;
+}

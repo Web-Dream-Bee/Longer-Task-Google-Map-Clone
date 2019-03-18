@@ -12,6 +12,6 @@ export function getRestaurant(lat: number, lng: number) {
       longitude: lng
     }
   };
-  axios.get('https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search', config)
-  .then(response => console.log(response))
+  return axios.get('https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search', config)
+  .then(response => { return response.data.businesses })
 }
